@@ -2,9 +2,9 @@
     function connectDB()
     {
         try{
-        $db_server = "mysql:host=classdb.it.mtu.edu;dbname=ndminor";
-        $db_user = "ndminor";
-        $db_pass = "123*Ndminor";
+        $db_server = "";
+        $db_user = "";
+        $db_pass = "";
         $dbh = new PDO($db_server, $db_user, $db_pass);
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
@@ -60,7 +60,7 @@
                 $dbh2 = connectDB();
                 $statement2 = $dbh2->prepare("SELECT emp_id FROM employees where emp_username = :userName and emp_password = sha2(:passwod, 256)");
                 $statement2->bindParam(":userName", $user);
-                $statement2->bindParam(":passwod", $passwd);
+                $statement2->bindParam(":passwd", $passwd);
                 $result = $statement2->execute();
                 $id = $statement2->fetch();
                 $_SESSION["emp_id"] = $id[0];
@@ -93,7 +93,7 @@
         $statement->bindParam(":firstname", $firstname);
         $statement->bindParam(":lastname", $lastname);
         $statement->bindParam(":email", $email);
-        $statement->bindParam(":addres", $address);
+        $statement->bindParam(":address", $address);
 
         $statement->execute();
 
